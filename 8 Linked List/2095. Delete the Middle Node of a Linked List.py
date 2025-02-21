@@ -1,6 +1,16 @@
-head = [1,3,4,7,1,2,6]
+class ListNode:
+  def __init__(self, val=0, next=None):
+    self.val = val
+    self.next = next
 
-print(head[3])
-head.pop(3)
-print(head)
-print(int(1.5))
+class Solution:
+  def deleteMiddle(self, head: ListNode | None) -> ListNode | None:
+    dummy = ListNode(0, head)
+    slow = dummy
+    fast = dummy
+
+    while fast.next and fast.next.next:
+      slow = slow.next
+      fast = fast.next.next
+    slow.next = slow.next.next
+    return dummy.next
